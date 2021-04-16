@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+
+int main ()
+{
+   int estrato;
+   float conagu;
+   float conene;
+   float imptel;
+   float desagu;
+   float desene;
+   float destel;
+   float cosagu;
+   float cosene;
+   float costel;
+   float costot;
+
+   std::cout << "Digita el estrato entre 1 y 6: ";
+   std::cin >> estrato;
+   if((estrato>=1)&&(estrato<=6))
+      {
+       std::cout << "Digita los Metros Cubicos del consumo de agua: ";
+       std::cin >> conagu;
+       std::cout << "Digita los Kw del consumo de energia: ";
+       std::cin >> conene;
+       std::cout << "Digita los Impulsos del telefono: ";
+       std::cin >> imptel;
+//defino descuentos
+	   if(estrato<3)
+	      {
+		   desagu=0.2;
+		   desene=0.15;
+		   destel=0.35;
+		  }
+	   else if (estrato<5)
+	           {
+			    desagu=0.1;
+			    desene=0.1;
+			    destel=0.25;
+		       }
+		     else
+			    {
+				 desagu=0;
+			     desene=0.05;
+			     destel=0.15;
+				}
+            
+//determino tarifa del agua
+   if(conagu<2001)
+      {
+	   cosagu=35000*(1-desagu);
+	  }
+   else
+      {
+	   cosagu=(35000*(1-desagu))+((conagu-2000)*400);
+	  }
+
+   if(conene<3001)
+      {
+	   cosene=30000*(1-desene);
+	  }
+   else
+      {
+	   conene=(30000*(1-desene))+((conene-3000)*350);
+	  }
+
+   if(imptel<1001)
+      {
+	   costel=38000*(1-destel);
+	  }
+   else
+      {
+	   costel=(38000*(1-destel))+((imptel-1000)*100);
+	  }
+
+   costel=cosagu+cosene+costel;   
+   
+   printf("E1 estrato es %d. \n", estrato);
+   printf("E1 consumo de agua es %f. \n", conagu);
+   printf("E1 descuento de agua es %f. \n", desagu);
+   printf("E1 consumo de energia es %f. \n", conene);
+   printf("E1 descuento de agua es %f. \n", desene);
+   printf("Los impulsos de telefono son %f. \n", imptel);
+   printf("E1 descuento de telefono es %f. \n", destel);
+   printf("E1 costo total a pagar es %f. \n", costot);
+      }
+   else
+      {
+	  std::cout << "ERROR NO DIGITASTE UN ESTRATO VALIDO!!!";
+	  }
+   return 0;
+}
